@@ -1,25 +1,23 @@
 -- MENU PARA FUNKY FRIDAY
--- Solo funciones del juego
-
 local player = game.Players.LocalPlayer
 local gui = Instance.new("ScreenGui")
 gui.Name = "FunkyMenu"
 gui.Parent = game.CoreGui
 
 local main = Instance.new("Frame")
-main.Size = UDim2.new(0, 400, 0, 450)
-main.Position = UDim2.new(0.5, -200, 0.5, -225)
+main.Size = UDim2.new(0, 380, 0, 420)
+main.Position = UDim2.new(0.5, -190, 0.5, -210)
 main.BackgroundColor3 = Color3.fromRGB(20, 20, 35)
 main.BackgroundTransparency = 0.1
 main.BorderSizePixel = 0
 main.Parent = gui
 
 local mainCorner = Instance.new("UICorner")
-mainCorner.CornerRadius = UDim.new(0, 15)
+mainCorner.CornerRadius = UDim.new(0, 12)
 mainCorner.Parent = main
 
 local topBar = Instance.new("Frame")
-topBar.Size = UDim2.new(1, 0, 0, 50)
+topBar.Size = UDim2.new(1, 0, 0, 45)
 topBar.BackgroundColor3 = Color3.fromRGB(80, 50, 120)
 topBar.BorderSizePixel = 0
 topBar.Parent = main
@@ -28,7 +26,7 @@ local title = Instance.new("TextLabel")
 title.Size = UDim2.new(0.7, 0, 1, 0)
 title.Position = UDim2.new(0.05, 0, 0, 0)
 title.BackgroundTransparency = 1
-title.Text = "🎵 FUNKY FRIDAY MENU 🎵"
+title.Text = "🎵 FUNKY FRIDAY 🎵"
 title.TextColor3 = Color3.fromRGB(255, 100, 200)
 title.TextXAlignment = Enum.TextXAlignment.Left
 title.TextScaled = true
@@ -37,7 +35,7 @@ title.Parent = topBar
 
 local closeBtn = Instance.new("TextButton")
 closeBtn.Size = UDim2.new(0, 40, 0, 35)
-closeBtn.Position = UDim2.new(1, -48, 0, 8)
+closeBtn.Position = UDim2.new(1, -45, 0, 5)
 closeBtn.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
 closeBtn.Text = "X"
 closeBtn.TextScaled = true
@@ -46,10 +44,9 @@ closeBtn.MouseButton1Click:Connect(function()
     gui:Destroy()
 end)
 
--- Pestañas
 local tabsFrame = Instance.new("Frame")
-tabsFrame.Size = UDim2.new(1, 0, 0, 45)
-tabsFrame.Position = UDim2.new(0, 0, 0, 50)
+tabsFrame.Size = UDim2.new(1, 0, 0, 40)
+tabsFrame.Position = UDim2.new(0, 0, 0, 45)
 tabsFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
 tabsFrame.BorderSizePixel = 0
 tabsFrame.Parent = main
@@ -75,22 +72,27 @@ tab2.Font = Enum.Font.GothamBold
 tab2.Parent = tabsFrame
 
 local content = Instance.new("Frame")
-content.Size = UDim2.new(1, -20, 1, -115)
-content.Position = UDim2.new(0.02, 0, 0.21, 0)
+content.Size = UDim2.new(1, -20, 1, -105)
+content.Position = UDim2.new(0.02, 0, 0.23, 0)
 content.BackgroundTransparency = 1
 content.Parent = main
 
--- PESTAÑA AUTOPLAY
 local autoTab = Instance.new("Frame")
 autoTab.Size = UDim2.new(1, 0, 1, 0)
 autoTab.BackgroundTransparency = 1
 autoTab.Visible = true
 autoTab.Parent = content
 
--- Autoplay
+local extraTab = Instance.new("Frame")
+extraTab.Size = UDim2.new(1, 0, 1, 0)
+extraTab.BackgroundTransparency = 1
+extraTab.Visible = false
+extraTab.Parent = content
+
+-- Botón Autoplay
 local autoBox = Instance.new("Frame")
-autoBox.Size = UDim2.new(0.96, 0, 0.25, 0)
-autoBox.Position = UDim2.new(0.02, 0, 0.05, 0)
+autoBox.Size = UDim2.new(0.96, 0, 0.3, 0)
+autoBox.Position = UDim2.new(0.02, 0, 0.1, 0)
 autoBox.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
 autoBox.BorderSizePixel = 0
 autoBox.Parent = autoTab
@@ -119,10 +121,10 @@ autoBtn.TextScaled = true
 autoBtn.Font = Enum.Font.GothamBold
 autoBtn.Parent = autoBox
 
--- Auto Space (Saltar automáticamente)
+-- Botón Auto Space
 local spaceBox = Instance.new("Frame")
-spaceBox.Size = UDim2.new(0.96, 0, 0.25, 0)
-spaceBox.Position = UDim2.new(0.02, 0, 0.35, 0)
+spaceBox.Size = UDim2.new(0.96, 0, 0.3, 0)
+spaceBox.Position = UDim2.new(0.02, 0, 0.45, 0)
 spaceBox.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
 spaceBox.BorderSizePixel = 0
 spaceBox.Parent = autoTab
@@ -151,17 +153,10 @@ spaceBtn.TextScaled = true
 spaceBtn.Font = Enum.Font.GothamBold
 spaceBtn.Parent = spaceBox
 
--- PESTAÑA EXTRAS
-local extraTab = Instance.new("Frame")
-extraTab.Size = UDim2.new(1, 0, 1, 0)
-extraTab.BackgroundTransparency = 1
-extraTab.Visible = false
-extraTab.Parent = content
-
--- God Notes (Notas perfectas)
+-- EXTRAS: God Notes
 local godBox = Instance.new("Frame")
-godBox.Size = UDim2.new(0.96, 0, 0.25, 0)
-godBox.Position = UDim2.new(0.02, 0, 0.05, 0)
+godBox.Size = UDim2.new(0.96, 0, 0.3, 0)
+godBox.Position = UDim2.new(0.02, 0, 0.1, 0)
 godBox.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
 godBox.BorderSizePixel = 0
 godBox.Parent = extraTab
@@ -190,10 +185,10 @@ godBtn.TextScaled = true
 godBtn.Font = Enum.Font.GothamBold
 godBtn.Parent = godBox
 
--- Creditos
+-- Créditos
 local creditBox = Instance.new("Frame")
-creditBox.Size = UDim2.new(0.96, 0, 0.25, 0)
-creditBox.Position = UDim2.new(0.02, 0, 0.35, 0)
+creditBox.Size = UDim2.new(0.96, 0, 0.3, 0)
+creditBox.Position = UDim2.new(0.02, 0, 0.45, 0)
 creditBox.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
 creditBox.BorderSizePixel = 0
 creditBox.Parent = extraTab
@@ -219,7 +214,6 @@ local godActive = false
 local autoConnection = nil
 local spaceConnection = nil
 
--- Función para obtener las notas del juego
 local function getNotes()
     local notes = workspace:FindFirstChild("Notes")
     if notes then
@@ -228,13 +222,11 @@ local function getNotes()
     return {}
 end
 
--- AUTOPLAY
 autoBtn.MouseButton1Click:Connect(function()
     autoActive = not autoActive
     if autoActive then
         autoBtn.Text = "ON"
         autoBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
-        
         autoConnection = game:GetService("RunService").RenderStepped:Connect(function()
             if autoActive then
                 for _, note in pairs(getNotes()) do
@@ -257,19 +249,14 @@ autoBtn.MouseButton1Click:Connect(function()
     end
 end)
 
--- AUTO SPACE (Saltar automáticamente la canción)
 spaceBtn.MouseButton1Click:Connect(function()
     spaceActive = not spaceActive
     if spaceActive then
         spaceBtn.Text = "ON"
         spaceBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
-        
         spaceConnection = game:GetService("RunService").RenderStepped:Connect(function()
             if spaceActive then
-                -- Buscar botón de espacio/saltar en la interfaz
-                local players = game:GetService("Players")
-                local localPlayer = players.LocalPlayer
-                local playerGui = localPlayer:FindFirstChild("PlayerGui")
+                local playerGui = player:FindFirstChild("PlayerGui")
                 if playerGui then
                     local songSkip = playerGui:FindFirstChild("SongSkip")
                     if songSkip then
@@ -292,41 +279,23 @@ spaceBtn.MouseButton1Click:Connect(function()
     end
 end)
 
--- GOD NOTES (Notas perfectas - modifica el hit time)
 godBtn.MouseButton1Click:Connect(function()
     godActive = not godActive
     if godActive then
         godBtn.Text = "ON"
         godBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
-        -- God notes activado
-        game:GetService("RunService").RenderStepped:Connect(function()
-            if godActive then
-                for _, note in pairs(getNotes()) do
-                    if note:IsA("Part") and note:FindFirstChild("ProximityPrompt") then
-                        -- Forzar hit perfecto
-                        local prompt = note:FindFirstChild("ProximityPrompt")
-                        if prompt then
-                            fireproximityprompt(prompt)
-                        end
-                    end
-                end
-            end
-        end)
     else
         godBtn.Text = "OFF"
         godBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
     end
 end)
 
--- Cambio de pestañas
 local function switchTab(activeTab, activeBtn, otherBtns)
     autoTab.Visible = false
     extraTab.Visible = false
     activeTab.Visible = true
-    
     activeBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 150)
     activeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-    
     for _, btn in pairs(otherBtns) do
         btn.BackgroundColor3 = Color3.fromRGB(40, 40, 70)
         btn.TextColor3 = Color3.fromRGB(200, 200, 200)
@@ -341,10 +310,8 @@ tab2.MouseButton1Click:Connect(function()
     switchTab(extraTab, tab2, {tab1})
 end)
 
--- Hacer menú arrastrable
 local dragging = false
-local dragStart
-local frameStart
+local dragStart, frameStart
 
 main.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.Touch then
@@ -367,5 +334,4 @@ game:GetService("UserInputService").InputEnded:Connect(function(input)
     end
 end)
 
-print("✅ Menu Funky Friday cargado!")
-print("🎵 Funciones: Autoplay | Auto Space | God Notes")
+print("Menu Funky Friday cargado!")

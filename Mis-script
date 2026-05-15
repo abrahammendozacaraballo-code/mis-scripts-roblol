@@ -1,40 +1,371 @@
--- Menu Simple que Funciona
+-- MENU PARA FUNKY FRIDAY
+-- Solo funciones del juego
+
+local player = game.Players.LocalPlayer
 local gui = Instance.new("ScreenGui")
-gui.Name = "Menu"
+gui.Name = "FunkyMenu"
 gui.Parent = game.CoreGui
 
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 300, 0, 400)
-frame.Position = UDim2.new(0.5, -150, 0.5, -200)
-frame.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
-frame.Parent = gui
+local main = Instance.new("Frame")
+main.Size = UDim2.new(0, 400, 0, 450)
+main.Position = UDim2.new(0.5, -200, 0.5, -225)
+main.BackgroundColor3 = Color3.fromRGB(20, 20, 35)
+main.BackgroundTransparency = 0.1
+main.BorderSizePixel = 0
+main.Parent = gui
 
-local titulo = Instance.new("TextLabel")
-titulo.Size = UDim2.new(1, 0, 0, 40)
-titulo.BackgroundColor3 = Color3.fromRGB(80, 60, 150)
-titulo.Text = "MENU ABRAHAM"
-titulo.TextColor3 = Color3.fromRGB(255, 255, 255)
-titulo.TextScaled = true
-titulo.Parent = frame
+local mainCorner = Instance.new("UICorner")
+mainCorner.CornerRadius = UDim.new(0, 15)
+mainCorner.Parent = main
 
-local cerrar = Instance.new("TextButton")
-cerrar.Size = UDim2.new(0, 40, 0, 35)
-cerrar.Position = UDim2.new(1, -45, 0, 3)
-cerrar.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-cerrar.Text = "X"
-cerrar.TextScaled = true
-cerrar.Parent = titulo
-cerrar.MouseButton1Click:Connect(function()
+local topBar = Instance.new("Frame")
+topBar.Size = UDim2.new(1, 0, 0, 50)
+topBar.BackgroundColor3 = Color3.fromRGB(80, 50, 120)
+topBar.BorderSizePixel = 0
+topBar.Parent = main
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(0.7, 0, 1, 0)
+title.Position = UDim2.new(0.05, 0, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "🎵 FUNKY FRIDAY MENU 🎵"
+title.TextColor3 = Color3.fromRGB(255, 100, 200)
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.TextScaled = true
+title.Font = Enum.Font.GothamBold
+title.Parent = topBar
+
+local closeBtn = Instance.new("TextButton")
+closeBtn.Size = UDim2.new(0, 40, 0, 35)
+closeBtn.Position = UDim2.new(1, -48, 0, 8)
+closeBtn.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+closeBtn.Text = "X"
+closeBtn.TextScaled = true
+closeBtn.Parent = topBar
+closeBtn.MouseButton1Click:Connect(function()
     gui:Destroy()
 end)
 
-local label = Instance.new("TextLabel")
-label.Size = UDim2.new(0.8, 0, 0, 50)
-label.Position = UDim2.new(0.1, 0, 0.15, 0)
-label.BackgroundTransparency = 1
-label.Text = "Menu Cargado!"
-label.TextColor3 = Color3.fromRGB(255, 200, 100)
-label.TextScaled = true
-label.Parent = frame
+-- Pestañas
+local tabsFrame = Instance.new("Frame")
+tabsFrame.Size = UDim2.new(1, 0, 0, 45)
+tabsFrame.Position = UDim2.new(0, 0, 0, 50)
+tabsFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
+tabsFrame.BorderSizePixel = 0
+tabsFrame.Parent = main
 
-print("Menu funcionando")
+local tab1 = Instance.new("TextButton")
+tab1.Size = UDim2.new(0.5, 0, 1, 0)
+tab1.Position = UDim2.new(0, 0, 0, 0)
+tab1.BackgroundColor3 = Color3.fromRGB(80, 60, 150)
+tab1.Text = "AUTOPLAY"
+tab1.TextColor3 = Color3.fromRGB(255, 255, 255)
+tab1.TextScaled = true
+tab1.Font = Enum.Font.GothamBold
+tab1.Parent = tabsFrame
+
+local tab2 = Instance.new("TextButton")
+tab2.Size = UDim2.new(0.5, 0, 1, 0)
+tab2.Position = UDim2.new(0.5, 0, 0, 0)
+tab2.BackgroundColor3 = Color3.fromRGB(40, 40, 70)
+tab2.Text = "EXTRAS"
+tab2.TextColor3 = Color3.fromRGB(200, 200, 200)
+tab2.TextScaled = true
+tab2.Font = Enum.Font.GothamBold
+tab2.Parent = tabsFrame
+
+local content = Instance.new("Frame")
+content.Size = UDim2.new(1, -20, 1, -115)
+content.Position = UDim2.new(0.02, 0, 0.21, 0)
+content.BackgroundTransparency = 1
+content.Parent = main
+
+-- PESTAÑA AUTOPLAY
+local autoTab = Instance.new("Frame")
+autoTab.Size = UDim2.new(1, 0, 1, 0)
+autoTab.BackgroundTransparency = 1
+autoTab.Visible = true
+autoTab.Parent = content
+
+-- Autoplay
+local autoBox = Instance.new("Frame")
+autoBox.Size = UDim2.new(0.96, 0, 0.25, 0)
+autoBox.Position = UDim2.new(0.02, 0, 0.05, 0)
+autoBox.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
+autoBox.BorderSizePixel = 0
+autoBox.Parent = autoTab
+
+local autoCorner = Instance.new("UICorner")
+autoCorner.CornerRadius = UDim.new(0, 10)
+autoCorner.Parent = autoBox
+
+local autoText = Instance.new("TextLabel")
+autoText.Size = UDim2.new(0.5, 0, 1, 0)
+autoText.Position = UDim2.new(0.03, 0, 0, 0)
+autoText.BackgroundTransparency = 1
+autoText.Text = "🎵 AUTOPLAY"
+autoText.TextColor3 = Color3.fromRGB(255, 100, 200)
+autoText.TextXAlignment = Enum.TextXAlignment.Left
+autoText.TextScaled = true
+autoText.Font = Enum.Font.GothamBold
+autoText.Parent = autoBox
+
+local autoBtn = Instance.new("TextButton")
+autoBtn.Size = UDim2.new(0.25, 0, 0.6, 0)
+autoBtn.Position = UDim2.new(0.7, 0, 0.2, 0)
+autoBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
+autoBtn.Text = "OFF"
+autoBtn.TextScaled = true
+autoBtn.Font = Enum.Font.GothamBold
+autoBtn.Parent = autoBox
+
+-- Auto Space (Saltar automáticamente)
+local spaceBox = Instance.new("Frame")
+spaceBox.Size = UDim2.new(0.96, 0, 0.25, 0)
+spaceBox.Position = UDim2.new(0.02, 0, 0.35, 0)
+spaceBox.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
+spaceBox.BorderSizePixel = 0
+spaceBox.Parent = autoTab
+
+local spaceCorner = Instance.new("UICorner")
+spaceCorner.CornerRadius = UDim.new(0, 10)
+spaceCorner.Parent = spaceBox
+
+local spaceText = Instance.new("TextLabel")
+spaceText.Size = UDim2.new(0.5, 0, 1, 0)
+spaceText.Position = UDim2.new(0.03, 0, 0, 0)
+spaceText.BackgroundTransparency = 1
+spaceText.Text = "␣ AUTO SPACE"
+spaceText.TextColor3 = Color3.fromRGB(255, 200, 100)
+spaceText.TextXAlignment = Enum.TextXAlignment.Left
+spaceText.TextScaled = true
+spaceText.Font = Enum.Font.GothamBold
+spaceText.Parent = spaceBox
+
+local spaceBtn = Instance.new("TextButton")
+spaceBtn.Size = UDim2.new(0.25, 0, 0.6, 0)
+spaceBtn.Position = UDim2.new(0.7, 0, 0.2, 0)
+spaceBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
+spaceBtn.Text = "OFF"
+spaceBtn.TextScaled = true
+spaceBtn.Font = Enum.Font.GothamBold
+spaceBtn.Parent = spaceBox
+
+-- PESTAÑA EXTRAS
+local extraTab = Instance.new("Frame")
+extraTab.Size = UDim2.new(1, 0, 1, 0)
+extraTab.BackgroundTransparency = 1
+extraTab.Visible = false
+extraTab.Parent = content
+
+-- God Notes (Notas perfectas)
+local godBox = Instance.new("Frame")
+godBox.Size = UDim2.new(0.96, 0, 0.25, 0)
+godBox.Position = UDim2.new(0.02, 0, 0.05, 0)
+godBox.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
+godBox.BorderSizePixel = 0
+godBox.Parent = extraTab
+
+local godCorner = Instance.new("UICorner")
+godCorner.CornerRadius = UDim.new(0, 10)
+godCorner.Parent = godBox
+
+local godText = Instance.new("TextLabel")
+godText.Size = UDim2.new(0.5, 0, 1, 0)
+godText.Position = UDim2.new(0.03, 0, 0, 0)
+godText.BackgroundTransparency = 1
+godText.Text = "✨ GOD NOTES"
+godText.TextColor3 = Color3.fromRGB(100, 255, 150)
+godText.TextXAlignment = Enum.TextXAlignment.Left
+godText.TextScaled = true
+godText.Font = Enum.Font.GothamBold
+godText.Parent = godBox
+
+local godBtn = Instance.new("TextButton")
+godBtn.Size = UDim2.new(0.25, 0, 0.6, 0)
+godBtn.Position = UDim2.new(0.7, 0, 0.2, 0)
+godBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
+godBtn.Text = "OFF"
+godBtn.TextScaled = true
+godBtn.Font = Enum.Font.GothamBold
+godBtn.Parent = godBox
+
+-- Creditos
+local creditBox = Instance.new("Frame")
+creditBox.Size = UDim2.new(0.96, 0, 0.25, 0)
+creditBox.Position = UDim2.new(0.02, 0, 0.35, 0)
+creditBox.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
+creditBox.BorderSizePixel = 0
+creditBox.Parent = extraTab
+
+local creditCorner = Instance.new("UICorner")
+creditCorner.CornerRadius = UDim.new(0, 10)
+creditCorner.Parent = creditBox
+
+local creditText = Instance.new("TextLabel")
+creditText.Size = UDim2.new(0.9, 0, 1, 0)
+creditText.Position = UDim2.new(0.05, 0, 0, 0)
+creditText.BackgroundTransparency = 1
+creditText.Text = "MENU PARA FUNKY FRIDAY\nCreado por: Abraham\n\nUsa bajo tu responsabilidad"
+creditText.TextColor3 = Color3.fromRGB(200, 200, 200)
+creditText.TextScaled = true
+creditText.Font = Enum.Font.Gotham
+creditText.Parent = creditBox
+
+-- ========== FUNCIONES ==========
+local autoActive = false
+local spaceActive = false
+local godActive = false
+local autoConnection = nil
+local spaceConnection = nil
+
+-- Función para obtener las notas del juego
+local function getNotes()
+    local notes = workspace:FindFirstChild("Notes")
+    if notes then
+        return notes:GetChildren()
+    end
+    return {}
+end
+
+-- AUTOPLAY
+autoBtn.MouseButton1Click:Connect(function()
+    autoActive = not autoActive
+    if autoActive then
+        autoBtn.Text = "ON"
+        autoBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
+        
+        autoConnection = game:GetService("RunService").RenderStepped:Connect(function()
+            if autoActive then
+                for _, note in pairs(getNotes()) do
+                    if note:IsA("Part") and note:FindFirstChild("ProximityPrompt") then
+                        local prompt = note:FindFirstChild("ProximityPrompt")
+                        if prompt then
+                            fireproximityprompt(prompt)
+                        end
+                    end
+                end
+            end
+        end)
+    else
+        autoBtn.Text = "OFF"
+        autoBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
+        if autoConnection then
+            autoConnection:Disconnect()
+            autoConnection = nil
+        end
+    end
+end)
+
+-- AUTO SPACE (Saltar automáticamente la canción)
+spaceBtn.MouseButton1Click:Connect(function()
+    spaceActive = not spaceActive
+    if spaceActive then
+        spaceBtn.Text = "ON"
+        spaceBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
+        
+        spaceConnection = game:GetService("RunService").RenderStepped:Connect(function()
+            if spaceActive then
+                -- Buscar botón de espacio/saltar en la interfaz
+                local players = game:GetService("Players")
+                local localPlayer = players.LocalPlayer
+                local playerGui = localPlayer:FindFirstChild("PlayerGui")
+                if playerGui then
+                    local songSkip = playerGui:FindFirstChild("SongSkip")
+                    if songSkip then
+                        local skipButton = songSkip:FindFirstChild("SkipButton")
+                        if skipButton and skipButton:IsA("TextButton") then
+                            skipButton:Click()
+                            wait(0.5)
+                        end
+                    end
+                end
+            end
+        end)
+    else
+        spaceBtn.Text = "OFF"
+        spaceBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
+        if spaceConnection then
+            spaceConnection:Disconnect()
+            spaceConnection = nil
+        end
+    end
+end)
+
+-- GOD NOTES (Notas perfectas - modifica el hit time)
+godBtn.MouseButton1Click:Connect(function()
+    godActive = not godActive
+    if godActive then
+        godBtn.Text = "ON"
+        godBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
+        -- God notes activado
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if godActive then
+                for _, note in pairs(getNotes()) do
+                    if note:IsA("Part") and note:FindFirstChild("ProximityPrompt") then
+                        -- Forzar hit perfecto
+                        local prompt = note:FindFirstChild("ProximityPrompt")
+                        if prompt then
+                            fireproximityprompt(prompt)
+                        end
+                    end
+                end
+            end
+        end)
+    else
+        godBtn.Text = "OFF"
+        godBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
+    end
+end)
+
+-- Cambio de pestañas
+local function switchTab(activeTab, activeBtn, otherBtns)
+    autoTab.Visible = false
+    extraTab.Visible = false
+    activeTab.Visible = true
+    
+    activeBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 150)
+    activeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    
+    for _, btn in pairs(otherBtns) do
+        btn.BackgroundColor3 = Color3.fromRGB(40, 40, 70)
+        btn.TextColor3 = Color3.fromRGB(200, 200, 200)
+    end
+end
+
+tab1.MouseButton1Click:Connect(function()
+    switchTab(autoTab, tab1, {tab2})
+end)
+
+tab2.MouseButton1Click:Connect(function()
+    switchTab(extraTab, tab2, {tab1})
+end)
+
+-- Hacer menú arrastrable
+local dragging = false
+local dragStart
+local frameStart
+
+main.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        frameStart = main.Position
+    end
+end)
+
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if dragging and input.UserInputType == Enum.UserInputType.Touch then
+        local delta = input.Position - dragStart
+        main.Position = UDim2.new(frameStart.X.Scale, frameStart.X.Offset + delta.X, frameStart.Y.Scale, frameStart.Y.Offset + delta.Y)
+    end
+end)
+
+game:GetService("UserInputService").InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch then
+        dragging = false
+    end
+end)
+
+print("✅ Menu Funky Friday cargado!")
+print("🎵 Funciones: Autoplay | Auto Space | God Notes")

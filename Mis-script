@@ -1,13 +1,514 @@
+-- MENÚ UNIVERSAL BONITO
+-- Funciona en CUALQUIER juego de Roblox
 
-print("Hola! Mi script funciona desde GitHub")
+-- Crear pantalla
+local gui = Instance.new("ScreenGui")
+gui.Name = "MenuBonito"
+gui.Parent = game.CoreGui
 
--- Esto hace que tu personaje salte
+-- Ventana principal
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 350, 0, 450)
+frame.Position = UDim2.new(0.5, -175, 0.5, -225)
+frame.BackgroundColor3 = Color3.fromRGB(25, 25, 40)
+frame.BackgroundTransparency = 0.05
+frame.BorderSizePixel = 0
+frame.Parent = gui
+
+-- Esquinas redondeadas
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 12)
+corner.Parent = frame
+
+-- Título
+local titulo = Instance.new("TextLabel")
+titulo.Size = UDim2.new(1, 0, 0, 45)
+titulo.BackgroundColor3 = Color3.fromRGB(80, 60, 150)
+titulo.Text = "⚡ MENU UNIVERSAL ⚡"
+titulo.TextColor3 = Color3.fromRGB(255, 255, 255)
+titulo.TextScaled = true
+titulo.Font = Enum.Font.GothamBold
+titulo.Parent = frame
+
+local tituloCorner = Instance.new("UICorner")
+tituloCorner.CornerRadius = UDim.new(0, 12)
+tituloCorner.Parent = titulo
+
+-- Botón cerrar
+local cerrar = Instance.new("TextButton")
+cerrar.Size = UDim2.new(0, 35, 0, 30)
+cerrar.Position = UDim2.new(1, -42, 0, 8)
+cerrar.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+cerrar.Text = "✕"
+cerrar.TextColor3 = Color3.fromRGB(255, 255, 255)
+cerrar.TextScaled = true
+cerrar.Font = Enum.Font.GothamBold
+cerrar.Parent = titulo
+
+local cerrarCorner = Instance.new("UICorner")
+cerrarCorner.CornerRadius = UDim.new(0, 8)
+cerrarCorner.Parent = cerrar
+
+cerrar.MouseButton1Click:Connect(function()
+    gui:Destroy()
+end)
+
+-- Obtener jugador
 local player = game.Players.LocalPlayer
-local character = player.Character
-if character then
-    local humanoid = character:FindFirstChild("Humanoid")
-    if humanoid then
-        humanoid:Jump()
+local hum = nil
+
+-- Variables
+local velocidadValor = 16
+local saltoValor = 50
+local infinito = false
+local volando = false
+local noclipActivo = false
+local vueloConexiones = {}
+local noclipConexion = nil
+local saltoConexion = nil
+
+-- Función para actualizar personaje
+local function actualizarPersonaje()
+    local char = player.Character
+    if char then
+        hum = char:FindFirstChild("Humanoid")
+        if hum then
+            hum.WalkSpeed = velocidadValor
+            hum.JumpPower = saltoValor
+        end
     end
 end
-Mi primer script en GitHub
+
+-- Cuando el personaje aparece
+player.CharacterAdded:Connect(function(char)
+    hum = char:WaitForChild("Humanoid")
+    hum.WalkSpeed = velocidadValor
+    hum.JumpPower = saltoValor
+end)
+
+-- ========== SECCIÓN VELOCIDAD ==========
+local velLabel = Instance.new("TextLabel")
+velLabel.Size = UDim2.new(0.9, 0, 0, 35)
+velLabel.Position = UDim2.new(0.05, 0, 0.13, 0)
+velLabel.BackgroundTransparency = 1
+velLabel.Text = "🚀 Velocidad: 16"
+velLabel.TextColor3 = Color3.fromRGB(255, 200, 100)
+velLabel.TextXAlignment = Enum.TextXAlignment.Left
+velLabel.TextScaled = true
+velLabel.Font = Enum.Font.Gotham
+velLabel.Parent = frame
+
+-- Slider velocidad
+local velSliderBg = Instance.new("Frame")
+velSliderBg.Size = UDim2.new(0.6, 0, 0, 6)
+velSliderBg.Position = UDim2.new(0.05, 0, 0.21, 0)
+velSliderBg.BackgroundColor3 = Color3.fromRGB(60, 60, 80)
+velSliderBg.BorderSizePixel = 0
+velSliderBg.Parent = frame
+
+local sliderCorner = Instance.new("UICorner")
+sliderCorner.CornerRadius = UDim.new(0, 3)
+sliderCorner.Parent = velSliderBg
+
+local velSliderFill = Instance.new("Frame")
+velSliderFill.Size = UDim2.new(0, 0, 1, 0)
+velSliderFill.BackgroundColor3 = Color3.fromRGB(100, 200, 255)
+velSliderFill.BorderSizePixel = 0
+velSliderFill.Parent = velSliderBg
+
+-- Valor numérico
+local velNum = Instance.new("TextLabel")
+velNum.Size = UDim2.new(0.12, 0, 0, 28)
+velNum.Position = UDim2.new(0.73, 0, 0.185, 0)
+velNum.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
+velNum.Text = "16"
+velNum.TextColor3 = Color3.fromRGB(255, 255, 255)
+velNum.TextScaled = true
+velNum.Font = Enum.Font.Gotham
+velNum.Parent = frame
+
+-- Botones + y -
+local velMenos = Instance.new("TextButton")
+velMenos.Size = UDim2.new(0, 35, 0, 30)
+velMenos.Position = UDim2.new(0.05, 0, 0.28, 0)
+velMenos.BackgroundColor3 = Color3.fromRGB(60, 60, 80)
+velMenos.Text = "-"
+velMenos.TextColor3 = Color3.fromRGB(255, 255, 255)
+velMenos.TextScaled = true
+velMenos.Font = Enum.Font.GothamBold
+velMenos.Parent = frame
+
+local velMas = Instance.new("TextButton")
+velMas.Size = UDim2.new(0, 35, 0, 30)
+velMas.Position = UDim2.new(0.85, 0, 0.28, 0)
+velMas.BackgroundColor3 = Color3.fromRGB(60, 60, 80)
+velMas.Text = "+"
+velMas.TextColor3 = Color3.fromRGB(255, 255, 255)
+velMas.TextScaled = true
+velMas.Font = Enum.Font.GothamBold
+velMas.Parent = frame
+
+-- ========== SECCIÓN SALTO ==========
+local saltoLabel = Instance.new("TextLabel")
+saltoLabel.Size = UDim2.new(0.9, 0, 0, 35)
+saltoLabel.Position = UDim2.new(0.05, 0, 0.38, 0)
+saltoLabel.BackgroundTransparency = 1
+saltoLabel.Text = "🦘 Altura de salto: 50"
+saltoLabel.TextColor3 = Color3.fromRGB(100, 255, 150)
+saltoLabel.TextXAlignment = Enum.TextXAlignment.Left
+saltoLabel.TextScaled = true
+saltoLabel.Font = Enum.Font.Gotham
+saltoLabel.Parent = frame
+
+-- Slider salto
+local saltoSliderBg = Instance.new("Frame")
+saltoSliderBg.Size = UDim2.new(0.6, 0, 0, 6)
+saltoSliderBg.Position = UDim2.new(0.05, 0, 0.46, 0)
+saltoSliderBg.BackgroundColor3 = Color3.fromRGB(60, 60, 80)
+saltoSliderBg.BorderSizePixel = 0
+saltoSliderBg.Parent = frame
+
+local saltoSliderCorner = Instance.new("UICorner")
+saltoSliderCorner.CornerRadius = UDim.new(0, 3)
+saltoSliderCorner.Parent = saltoSliderBg
+
+local saltoSliderFill = Instance.new("Frame")
+saltoSliderFill.Size = UDim2.new(0, 0, 1, 0)
+saltoSliderFill.BackgroundColor3 = Color3.fromRGB(100, 255, 150)
+saltoSliderFill.BorderSizePixel = 0
+saltoSliderFill.Parent = saltoSliderBg
+
+-- Valor numérico salto
+local saltoNum = Instance.new("TextLabel")
+saltoNum.Size = UDim2.new(0.12, 0, 0, 28)
+saltoNum.Position = UDim2.new(0.73, 0, 0.435, 0)
+saltoNum.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
+saltoNum.Text = "50"
+saltoNum.TextColor3 = Color3.fromRGB(255, 255, 255)
+saltoNum.TextScaled = true
+saltoNum.Font = Enum.Font.Gotham
+saltoNum.Parent = frame
+
+-- Botones + y - salto
+local saltoMenos = Instance.new("TextButton")
+saltoMenos.Size = UDim2.new(0, 35, 0, 30)
+saltoMenos.Position = UDim2.new(0.05, 0, 0.53, 0)
+saltoMenos.BackgroundColor3 = Color3.fromRGB(60, 60, 80)
+saltoMenos.Text = "-"
+saltoMenos.TextColor3 = Color3.fromRGB(255, 255, 255)
+saltoMenos.TextScaled = true
+saltoMenos.Font = Enum.Font.GothamBold
+saltoMenos.Parent = frame
+
+local saltoMas = Instance.new("TextButton")
+saltoMas.Size = UDim2.new(0, 35, 0, 30)
+saltoMas.Position = UDim2.new(0.85, 0, 0.53, 0)
+saltoMas.BackgroundColor3 = Color3.fromRGB(60, 60, 80)
+saltoMas.Text = "+"
+saltoMas.TextColor3 = Color3.fromRGB(255, 255, 255)
+saltoMas.TextScaled = true
+saltoMas.Font = Enum.Font.GothamBold
+saltoMas.Parent = frame
+
+-- ========== BOTONES DE FUNCIONES ==========
+
+-- Salto infinito
+local infBtn = Instance.new("TextButton")
+infBtn.Size = UDim2.new(0.42, 0, 0, 40)
+infBtn.Position = UDim2.new(0.05, 0, 0.62, 0)
+infBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
+infBtn.Text = "🔄 Inf Jump: OFF"
+infBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+infBtn.TextScaled = true
+infBtn.Font = Enum.Font.Gotham
+infBtn.Parent = frame
+
+-- Vuelo
+local flyBtn = Instance.new("TextButton")
+flyBtn.Size = UDim2.new(0.42, 0, 0, 40)
+flyBtn.Position = UDim2.new(0.53, 0, 0.62, 0)
+flyBtn.BackgroundColor3 = Color3.fromRGB(60, 100, 140)
+flyBtn.Text = "🕊️ Fly: OFF"
+flyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+flyBtn.TextScaled = true
+flyBtn.Font = Enum.Font.Gotham
+flyBtn.Parent = frame
+
+-- NoClip
+local noclipBtn = Instance.new("TextButton")
+noclipBtn.Size = UDim2.new(0.42, 0, 0, 40)
+noclipBtn.Position = UDim2.new(0.05, 0, 0.74, 0)
+noclipBtn.BackgroundColor3 = Color3.fromRGB(80, 120, 100)
+noclipBtn.Text = "👻 NoClip: OFF"
+noclipBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+noclipBtn.TextScaled = true
+noclipBtn.Font = Enum.Font.Gotham
+noclipBtn.Parent = frame
+
+-- Reset
+local resetBtn = Instance.new("TextButton")
+resetBtn.Size = UDim2.new(0.42, 0, 0, 40)
+resetBtn.Position = UDim2.new(0.53, 0, 0.74, 0)
+resetBtn.BackgroundColor3 = Color3.fromRGB(140, 80, 60)
+resetBtn.Text = "⟳ Reset"
+resetBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+resetBtn.TextScaled = true
+resetBtn.Font = Enum.Font.Gotham
+resetBtn.Parent = frame
+
+-- Créditos
+local creditos = Instance.new("TextLabel")
+creditos.Size = UDim2.new(1, 0, 0, 25)
+creditos.Position = UDim2.new(0, 0, 0.89, 0)
+creditos.BackgroundTransparency = 1
+creditos.Text = "Menu Universal | By: Abraham"
+creditos.TextColor3 = Color3.fromRGB(150, 150, 150)
+creditos.TextScaled = true
+creditos.Font = Enum.Font.Gotham
+creditos.Parent = frame
+
+-- ========== FUNCIONES DE LOS BOTONES ==========
+
+-- Velocidad
+velMenos.MouseButton1Click:Connect(function()
+    velocidadValor = math.max(16, velocidadValor - 5)
+    velNum.Text = tostring(velocidadValor)
+    velLabel.Text = "🚀 Velocidad: " .. velocidadValor
+    velSliderFill.Size = UDim2.new((velocidadValor - 16) / 234, 0, 1, 0)
+    if hum then hum.WalkSpeed = velocidadValor end
+end)
+
+velMas.MouseButton1Click:Connect(function()
+    velocidadValor = math.min(250, velocidadValor + 5)
+    velNum.Text = tostring(velocidadValor)
+    velLabel.Text = "🚀 Velocidad: " .. velocidadValor
+    velSliderFill.Size = UDim2.new((velocidadValor - 16) / 234, 0, 1, 0)
+    if hum then hum.WalkSpeed = velocidadValor end
+end)
+
+-- Salto
+saltoMenos.MouseButton1Click:Connect(function()
+    saltoValor = math.max(50, saltoValor - 10)
+    saltoNum.Text = tostring(saltoValor)
+    saltoLabel.Text = "🦘 Altura de salto: " .. saltoValor
+    saltoSliderFill.Size = UDim2.new((saltoValor - 50) / 450, 0, 1, 0)
+    if hum then hum.JumpPower = saltoValor end
+end)
+
+saltoMas.MouseButton1Click:Connect(function()
+    saltoValor = math.min(500, saltoValor + 10)
+    saltoNum.Text = tostring(saltoValor)
+    saltoLabel.Text = "🦘 Altura de salto: " .. saltoValor
+    saltoSliderFill.Size = UDim2.new((saltoValor - 50) / 450, 0, 1, 0)
+    if hum then hum.JumpPower = saltoValor end
+end)
+
+-- Salto infinito
+infBtn.MouseButton1Click:Connect(function()
+    infinito = not infinito
+    if infinito then
+        infBtn.Text = "🔄 Inf Jump: ON"
+        infBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
+        saltoConexion = game:GetService("UserInputService").JumpRequest:Connect(function()
+            if infinito and hum then
+                hum:ChangeState(Enum.HumanoidStateType.Jumping)
+            end
+        end)
+    else
+        infBtn.Text = "🔄 Inf Jump: OFF"
+        infBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
+        if saltoConexion then
+            saltoConexion:Disconnect()
+            saltoConexion = nil
+        end
+    end
+end)
+
+-- Vuelo
+flyBtn.MouseButton1Click:Connect(function()
+    volando = not volando
+    if volando then
+        flyBtn.Text = "🕊️ Fly: ON"
+        flyBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
+        
+        local char = player.Character
+        if char then
+            local torso = char:FindFirstChild("HumanoidRootPart") or char:FindFirstChild("Torso")
+            if torso then
+                local bg = Instance.new("BodyGyro")
+                local bv = Instance.new("BodyVelocity")
+                bg.P = 9e4
+                bg.MaxTorque = Vector3.new(9e9, 9e9, 9e9)
+                bg.Parent = torso
+                bv.MaxForce = Vector3.new(9e9, 9e9, 9e9)
+                bv.Velocity = Vector3.new(0, 0, 0)
+                bv.Parent = torso
+                
+                local controls = {W=false, S=false, A=false, D=false, Space=false, Shift=false}
+                local uis = game:GetService("UserInputService")
+                
+                local function updateFly()
+                    local vel = Vector3.new(0, 0, 0)
+                    if controls.W then vel = vel + torso.CFrame.LookVector end
+                    if controls.S then vel = vel - torso.CFrame.LookVector end
+                    if controls.D then vel = vel + torso.CFrame.RightVector end
+                    if controls.A then vel = vel - torso.CFrame.RightVector end
+                    if controls.Space then vel = vel + Vector3.new(0, 1, 0) end
+                    if controls.Shift then vel = vel - Vector3.new(0, 1, 0) end
+                    if vel.Magnitude > 0 then vel = vel.Unit * 75 end
+                    bv.Velocity = vel
+                    if vel.Magnitude > 0 then
+                        bg.CFrame = CFrame.new(torso.Position, torso.Position + vel)
+                    end
+                end
+                
+                local conBegan = uis.InputBegan:Connect(function(input)
+                    local k = input.KeyCode
+                    if k == Enum.KeyCode.W then controls.W = true updateFly() end
+                    if k == Enum.KeyCode.S then controls.S = true updateFly() end
+                    if k == Enum.KeyCode.D then controls.D = true updateFly() end
+                    if k == Enum.KeyCode.A then controls.A = true updateFly() end
+                    if k == Enum.KeyCode.Space then controls.Space = true updateFly() end
+                    if k == Enum.KeyCode.LeftShift then controls.Shift = true updateFly() end
+                end)
+                
+                local conEnded = uis.InputEnded:Connect(function(input)
+                    local k = input.KeyCode
+                    if k == Enum.KeyCode.W then controls.W = false updateFly() end
+                    if k == Enum.KeyCode.S then controls.S = false updateFly() end
+                    if k == Enum.KeyCode.D then controls.D = false updateFly() end
+                    if k == Enum.KeyCode.A then controls.A = false updateFly() end
+                    if k == Enum.KeyCode.Space then controls.Space = false updateFly() end
+                    if k == Enum.KeyCode.LeftShift then controls.Shift = false updateFly() end
+                end)
+                
+                local heartbeat = game:GetService("RunService").Heartbeat:Connect(updateFly)
+                
+                vueloConexiones = {conBegan, conEnded, heartbeat, bg, bv}
+            end
+        end
+    else
+        flyBtn.Text = "🕊️ Fly: OFF"
+        flyBtn.BackgroundColor3 = Color3.fromRGB(60, 100, 140)
+        for _, con in ipairs(vueloConexiones) do
+            if con and con.Disconnect then con:Disconnect()
+            elseif con and con.Destroy then con:Destroy() end
+        end
+        vueloConexiones = {}
+    end
+end)
+
+-- NoClip
+noclipBtn.MouseButton1Click:Connect(function()
+    noclipActivo = not noclipActivo
+    if noclipActivo then
+        noclipBtn.Text = "👻 NoClip: ON"
+        noclipBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
+        noclipConexion = game:GetService("RunService").Stepped:Connect(function()
+            if noclipActivo then
+                local char = player.Character
+                if char then
+                    for _, part in pairs(char:GetDescendants()) do
+                        if part:IsA("BasePart") then
+                            part.CanCollide = false
+                        end
+                    end
+                end
+            end
+        end)
+    else
+        noclipBtn.Text = "👻 NoClip: OFF"
+        noclipBtn.BackgroundColor3 = Color3.fromRGB(80, 120, 100)
+        if noclipConexion then
+            noclipConexion:Disconnect()
+            noclipConexion = nil
+        end
+        local char = player.Character
+        if char then
+            for _, part in pairs(char:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.CanCollide = true
+                end
+            end
+        end
+    end
+end)
+
+-- Reset
+resetBtn.MouseButton1Click:Connect(function()
+    velocidadValor = 16
+    saltoValor = 50
+    velNum.Text = "16"
+    velLabel.Text = "🚀 Velocidad: 16"
+    velSliderFill.Size = UDim2.new(0, 0, 1, 0)
+    saltoNum.Text = "50"
+    saltoLabel.Text = "🦘 Altura de salto: 50"
+    saltoSliderFill.Size = UDim2.new(0, 0, 1, 0)
+    
+    if infinito then
+        infinito = false
+        infBtn.Text = "🔄 Inf Jump: OFF"
+        infBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
+        if saltoConexion then saltoConexion:Disconnect() saltoConexion = nil end
+    end
+    
+    if volando then
+        volando = false
+        flyBtn.Text = "🕊️ Fly: OFF"
+        flyBtn.BackgroundColor3 = Color3.fromRGB(60, 100, 140)
+        for _, con in ipairs(vueloConexiones) do
+            if con and con.Disconnect then con:Disconnect()
+            elseif con and con.Destroy then con:Destroy() end
+        end
+        vueloConexiones = {}
+    end
+    
+    if noclipActivo then
+        noclipActivo = false
+        noclipBtn.Text = "👻 NoClip: OFF"
+        noclipBtn.BackgroundColor3 = Color3.fromRGB(80, 120, 100)
+        if noclipConexion then noclipConexion:Disconnect() noclipConexion = nil end
+        local char = player.Character
+        if char then
+            for _, part in pairs(char:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.CanCollide = true
+                end
+            end
+        end
+    end
+    
+    if hum then
+        hum.WalkSpeed = 16
+        hum.JumpPower = 50
+    end
+end)
+
+-- Hacer el menú arrastrable
+local dragging = false
+local dragStart
+local frameStart
+
+frame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        frameStart = frame.Position
+    end
+end)
+
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if dragging and input.UserInputType == Enum.UserInputType.Touch then
+        local delta = input.Position - dragStart
+        frame.Position = UDim2.new(frameStart.X.Scale, frameStart.X.Offset + delta.X, frameStart.Y.Scale, frameStart.Y.Offset + delta.Y)
+    end
+end)
+
+game:GetService("UserInputService").InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch then
+        dragging = false
+    end
+end)
+
+print("✅ Menú Universal cargado correctamente!")
+print("📌 Funciones: Velocidad | Salto | Inf Jump | Fly | NoClip")

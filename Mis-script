@@ -1,15 +1,9 @@
--- MENU ESTILO PROFESIONAL
--- Por: Abraham
-
+-- MENU PROFESIONAL COMPLETO
 local player = game.Players.LocalPlayer
-local hum = nil
-
--- Crear pantalla principal
 local gui = Instance.new("ScreenGui")
 gui.Name = "ProMenu"
 gui.Parent = game.CoreGui
 
--- Ventana principal
 local main = Instance.new("Frame")
 main.Size = UDim2.new(0, 450, 0, 500)
 main.Position = UDim2.new(0.5, -225, 0.5, -250)
@@ -18,60 +12,34 @@ main.BackgroundTransparency = 0.1
 main.BorderSizePixel = 0
 main.Parent = gui
 
-local mainCorner = Instance.new("UICorner")
-mainCorner.CornerRadius = UDim.new(0, 15)
-mainCorner.Parent = main
-
--- Sombra
-local shadow = Instance.new("UIStroke")
-shadow.Thickness = 2
-shadow.Color = Color3.fromRGB(100, 80, 200)
-shadow.Transparency = 0.5
-shadow.Parent = main
-
--- BARRA SUPERIOR
 local topBar = Instance.new("Frame")
 topBar.Size = UDim2.new(1, 0, 0, 50)
 topBar.BackgroundColor3 = Color3.fromRGB(45, 35, 90)
 topBar.BorderSizePixel = 0
 topBar.Parent = main
 
-local topCorner = Instance.new("UICorner")
-topCorner.CornerRadius = UDim.new(0, 15)
-topCorner.Parent = topBar
-
--- Título
 local title = Instance.new("TextLabel")
 title.Size = UDim2.new(0.7, 0, 1, 0)
 title.Position = UDim2.new(0.05, 0, 0, 0)
 title.BackgroundTransparency = 1
-title.Text = "⚡ ABRAHAM MENU ⚡"
+title.Text = "ABRAHAM MENU"
 title.TextColor3 = Color3.fromRGB(255, 200, 100)
 title.TextXAlignment = Enum.TextXAlignment.Left
 title.TextScaled = true
 title.Font = Enum.Font.GothamBold
 title.Parent = topBar
 
--- Botón cerrar
 local closeBtn = Instance.new("TextButton")
 closeBtn.Size = UDim2.new(0, 40, 0, 35)
 closeBtn.Position = UDim2.new(1, -48, 0, 8)
 closeBtn.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-closeBtn.Text = "✕"
-closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeBtn.Text = "X"
 closeBtn.TextScaled = true
-closeBtn.Font = Enum.Font.GothamBold
 closeBtn.Parent = topBar
-
-local closeCorner = Instance.new("UICorner")
-closeCorner.CornerRadius = UDim.new(0, 8)
-closeCorner.Parent = closeBtn
-
 closeBtn.MouseButton1Click:Connect(function()
     gui:Destroy()
 end)
 
--- ========== PESTAÑAS ==========
 local tabsFrame = Instance.new("Frame")
 tabsFrame.Size = UDim2.new(1, 0, 0, 45)
 tabsFrame.Position = UDim2.new(0, 0, 0, 50)
@@ -79,12 +47,11 @@ tabsFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
 tabsFrame.BorderSizePixel = 0
 tabsFrame.Parent = main
 
--- Botones de pestañas
 local tab1 = Instance.new("TextButton")
 tab1.Size = UDim2.new(0.25, 0, 1, 0)
 tab1.Position = UDim2.new(0, 0, 0, 0)
 tab1.BackgroundColor3 = Color3.fromRGB(80, 60, 150)
-tab1.Text = "🏠 MAIN"
+tab1.Text = "MAIN"
 tab1.TextColor3 = Color3.fromRGB(255, 255, 255)
 tab1.TextScaled = true
 tab1.Font = Enum.Font.GothamBold
@@ -94,7 +61,7 @@ local tab2 = Instance.new("TextButton")
 tab2.Size = UDim2.new(0.25, 0, 1, 0)
 tab2.Position = UDim2.new(0.25, 0, 0, 0)
 tab2.BackgroundColor3 = Color3.fromRGB(40, 40, 70)
-tab2.Text = "✨ MOVEMENT"
+tab2.Text = "MOVEMENT"
 tab2.TextColor3 = Color3.fromRGB(200, 200, 200)
 tab2.TextScaled = true
 tab2.Font = Enum.Font.GothamBold
@@ -104,7 +71,7 @@ local tab3 = Instance.new("TextButton")
 tab3.Size = UDim2.new(0.25, 0, 1, 0)
 tab3.Position = UDim2.new(0.5, 0, 0, 0)
 tab3.BackgroundColor3 = Color3.fromRGB(40, 40, 70)
-tab3.Text = "🛠️ UTILS"
+tab3.Text = "UTILS"
 tab3.TextColor3 = Color3.fromRGB(200, 200, 200)
 tab3.TextScaled = true
 tab3.Font = Enum.Font.GothamBold
@@ -114,132 +81,126 @@ local tab4 = Instance.new("TextButton")
 tab4.Size = UDim2.new(0.25, 0, 1, 0)
 tab4.Position = UDim2.new(0.75, 0, 0, 0)
 tab4.BackgroundColor3 = Color3.fromRGB(40, 40, 70)
-tab4.Text = "🎨 CREDITS"
+tab4.Text = "CREDITS"
 tab4.TextColor3 = Color3.fromRGB(200, 200, 200)
 tab4.TextScaled = true
 tab4.Font = Enum.Font.GothamBold
 tab4.Parent = tabsFrame
 
--- ========== CONTENIDO DE PESTAÑAS ==========
-local contentFrame = Instance.new("Frame")
-contentFrame.Size = UDim2.new(1, -20, 1, -110)
-contentFrame.Position = UDim2.new(0.02, 0, 0.21, 0)
-contentFrame.BackgroundTransparency = 1
-contentFrame.Parent = main
+local content = Instance.new("Frame")
+content.Size = UDim2.new(1, -20, 1, -115)
+content.Position = UDim2.new(0.02, 0, 0.21, 0)
+content.BackgroundTransparency = 1
+content.Parent = main
 
--- PESTAÑA 1 (MAIN)
 local mainTab = Instance.new("Frame")
 mainTab.Size = UDim2.new(1, 0, 1, 0)
 mainTab.BackgroundTransparency = 1
 mainTab.Visible = true
-mainTab.Parent = contentFrame
+mainTab.Parent = content
 
--- Velocidad
-local speedSection = Instance.new("Frame")
-speedSection.Size = UDim2.new(0.46, 0, 0.28, 0)
-speedSection.Position = UDim2.new(0.02, 0, 0.02, 0)
-speedSection.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
-speedSection.BorderSizePixel = 0
-speedSection.Parent = mainTab
-
-local secCorner = Instance.new("UICorner")
-secCorner.CornerRadius = UDim.new(0, 10)
-secCorner.Parent = speedSection
-
-local speedTitle = Instance.new("TextLabel")
-speedTitle.Size = UDim2.new(1, 0, 0, 35)
-speedTitle.BackgroundColor3 = Color3.fromRGB(80, 60, 150)
-speedTitle.Text = "🚀 VELOCIDAD"
-speedTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-speedTitle.TextScaled = true
-speedTitle.Font = Enum.Font.GothamBold
-speedTitle.Parent = speedSection
-
-local speedValue = Instance.new("TextLabel")
-speedValue.Size = UDim2.new(0.4, 0, 0, 40)
-speedValue.Position = UDim2.new(0.3, 0, 0.35, 0)
-speedValue.BackgroundColor3 = Color3.fromRGB(20, 20, 40)
-speedValue.Text = "16"
-speedValue.TextColor3 = Color3.fromRGB(255, 200, 100)
-speedValue.TextScaled = true
-speedValue.Font = Enum.Font.GothamBold
-speedValue.Parent = speedSection
-
-local speedMinus = Instance.new("TextButton")
-speedMinus.Size = UDim2.new(0.2, 0, 0.25, 0)
-speedMinus.Position = UDim2.new(0.05, 0, 0.6, 0)
-speedMinus.BackgroundColor3 = Color3.fromRGB(60, 60, 90)
-speedMinus.Text = "-"
-speedMinus.TextScaled = true
-speedMinus.Font = Enum.Font.GothamBold
-speedMinus.Parent = speedSection
-
-local speedPlus = Instance.new("TextButton")
-speedPlus.Size = UDim2.new(0.2, 0, 0.25, 0)
-speedPlus.Position = UDim2.new(0.75, 0, 0.6, 0)
-speedPlus.BackgroundColor3 = Color3.fromRGB(60, 60, 90)
-speedPlus.Text = "+"
-speedPlus.TextScaled = true
-speedPlus.Font = Enum.Font.GothamBold
-speedPlus.Parent = speedSection
-
--- Altura de salto
-local jumpSection = Instance.new("Frame")
-jumpSection.Size = UDim2.new(0.46, 0, 0.28, 0)
-jumpSection.Position = UDim2.new(0.52, 0, 0.02, 0)
-jumpSection.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
-jumpSection.BorderSizePixel = 0
-jumpSection.Parent = mainTab
-
-local jumpCorner = Instance.new("UICorner")
-jumpCorner.CornerRadius = UDim.new(0, 10)
-jumpCorner.Parent = jumpSection
-
-local jumpTitle = Instance.new("TextLabel")
-jumpTitle.Size = UDim2.new(1, 0, 0, 35)
-jumpTitle.BackgroundColor3 = Color3.fromRGB(60, 120, 100)
-jumpTitle.Text = "🦘 SALTO"
-jumpTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-jumpTitle.TextScaled = true
-jumpTitle.Font = Enum.Font.GothamBold
-jumpTitle.Parent = jumpSection
-
-local jumpValue = Instance.new("TextLabel")
-jumpValue.Size = UDim2.new(0.4, 0, 0, 40)
-jumpValue.Position = UDim2.new(0.3, 0, 0.35, 0)
-jumpValue.BackgroundColor3 = Color3.fromRGB(20, 20, 40)
-jumpValue.Text = "50"
-jumpValue.TextColor3 = Color3.fromRGB(100, 255, 150)
-jumpValue.TextScaled = true
-jumpValue.Font = Enum.Font.GothamBold
-jumpValue.Parent = jumpSection
-
-local jumpMinus = Instance.new("TextButton")
-jumpMinus.Size = UDim2.new(0.2, 0, 0.25, 0)
-jumpMinus.Position = UDim2.new(0.05, 0, 0.6, 0)
-jumpMinus.BackgroundColor3 = Color3.fromRGB(60, 60, 90)
-jumpMinus.Text = "-"
-jumpMinus.TextScaled = true
-jumpMinus.Font = Enum.Font.GothamBold
-jumpMinus.Parent = jumpSection
-
-local jumpPlus = Instance.new("TextButton")
-jumpPlus.Size = UDim2.new(0.2, 0, 0.25, 0)
-jumpPlus.Position = UDim2.new(0.75, 0, 0.6, 0)
-jumpPlus.BackgroundColor3 = Color3.fromRGB(60, 60, 90)
-jumpPlus.Text = "+"
-jumpPlus.TextScaled = true
-jumpPlus.Font = Enum.Font.GothamBold
-jumpPlus.Parent = jumpSection
-
--- PESTAÑA 2 (MOVEMENT)
 local moveTab = Instance.new("Frame")
 moveTab.Size = UDim2.new(1, 0, 1, 0)
 moveTab.BackgroundTransparency = 1
 moveTab.Visible = false
-moveTab.Parent = contentFrame
+moveTab.Parent = content
 
--- Infinite Jump
+local utilsTab = Instance.new("Frame")
+utilsTab.Size = UDim2.new(1, 0, 1, 0)
+utilsTab.BackgroundTransparency = 1
+utilsTab.Visible = false
+utilsTab.Parent = content
+
+local creditsTab = Instance.new("Frame")
+creditsTab.Size = UDim2.new(1, 0, 1, 0)
+creditsTab.BackgroundTransparency = 1
+creditsTab.Visible = false
+creditsTab.Parent = content
+
+local speedBox = Instance.new("Frame")
+speedBox.Size = UDim2.new(0.46, 0, 0.25, 0)
+speedBox.Position = UDim2.new(0.02, 0, 0.02, 0)
+speedBox.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
+speedBox.BorderSizePixel = 0
+speedBox.Parent = mainTab
+
+local speedTitle = Instance.new("TextLabel")
+speedTitle.Size = UDim2.new(1, 0, 0, 35)
+speedTitle.BackgroundColor3 = Color3.fromRGB(80, 60, 150)
+speedTitle.Text = "VELOCIDAD"
+speedTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+speedTitle.TextScaled = true
+speedTitle.Font = Enum.Font.GothamBold
+speedTitle.Parent = speedBox
+
+local speedVal = Instance.new("TextLabel")
+speedVal.Size = UDim2.new(0.4, 0, 0.4, 0)
+speedVal.Position = UDim2.new(0.3, 0, 0.3, 0)
+speedVal.BackgroundColor3 = Color3.fromRGB(20, 20, 40)
+speedVal.Text = "16"
+speedVal.TextColor3 = Color3.fromRGB(255, 200, 100)
+speedVal.TextScaled = true
+speedVal.Font = Enum.Font.GothamBold
+speedVal.Parent = speedBox
+
+local speedMinus = Instance.new("TextButton")
+speedMinus.Size = UDim2.new(0.2, 0, 0.3, 0)
+speedMinus.Position = UDim2.new(0.05, 0, 0.6, 0)
+speedMinus.BackgroundColor3 = Color3.fromRGB(60, 60, 90)
+speedMinus.Text = "-"
+speedMinus.TextScaled = true
+speedMinus.Parent = speedBox
+
+local speedPlus = Instance.new("TextButton")
+speedPlus.Size = UDim2.new(0.2, 0, 0.3, 0)
+speedPlus.Position = UDim2.new(0.75, 0, 0.6, 0)
+speedPlus.BackgroundColor3 = Color3.fromRGB(60, 60, 90)
+speedPlus.Text = "+"
+speedPlus.TextScaled = true
+speedPlus.Parent = speedBox
+
+local jumpBox = Instance.new("Frame")
+jumpBox.Size = UDim2.new(0.46, 0, 0.25, 0)
+jumpBox.Position = UDim2.new(0.52, 0, 0.02, 0)
+jumpBox.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
+jumpBox.BorderSizePixel = 0
+jumpBox.Parent = mainTab
+
+local jumpTitle = Instance.new("TextLabel")
+jumpTitle.Size = UDim2.new(1, 0, 0, 35)
+jumpTitle.BackgroundColor3 = Color3.fromRGB(60, 120, 100)
+jumpTitle.Text = "SALTO"
+jumpTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+jumpTitle.TextScaled = true
+jumpTitle.Font = Enum.Font.GothamBold
+jumpTitle.Parent = jumpBox
+
+local jumpVal = Instance.new("TextLabel")
+jumpVal.Size = UDim2.new(0.4, 0, 0.4, 0)
+jumpVal.Position = UDim2.new(0.3, 0, 0.3, 0)
+jumpVal.BackgroundColor3 = Color3.fromRGB(20, 20, 40)
+jumpVal.Text = "50"
+jumpVal.TextColor3 = Color3.fromRGB(100, 255, 150)
+jumpVal.TextScaled = true
+jumpVal.Font = Enum.Font.GothamBold
+jumpVal.Parent = jumpBox
+
+local jumpMinus = Instance.new("TextButton")
+jumpMinus.Size = UDim2.new(0.2, 0, 0.3, 0)
+jumpMinus.Position = UDim2.new(0.05, 0, 0.6, 0)
+jumpMinus.BackgroundColor3 = Color3.fromRGB(60, 60, 90)
+jumpMinus.Text = "-"
+jumpMinus.TextScaled = true
+jumpMinus.Parent = jumpBox
+
+local jumpPlus = Instance.new("TextButton")
+jumpPlus.Size = UDim2.new(0.2, 0, 0.3, 0)
+jumpPlus.Position = UDim2.new(0.75, 0, 0.6, 0)
+jumpPlus.BackgroundColor3 = Color3.fromRGB(60, 60, 90)
+jumpPlus.Text = "+"
+jumpPlus.TextScaled = true
+jumpPlus.Parent = jumpBox
+
 local infFrame = Instance.new("Frame")
 infFrame.Size = UDim2.new(0.96, 0, 0.2, 0)
 infFrame.Position = UDim2.new(0.02, 0, 0.02, 0)
@@ -247,15 +208,11 @@ infFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
 infFrame.BorderSizePixel = 0
 infFrame.Parent = moveTab
 
-local infCorner = Instance.new("UICorner")
-infCorner.CornerRadius = UDim.new(0, 10)
-infCorner.Parent = infFrame
-
 local infText = Instance.new("TextLabel")
 infText.Size = UDim2.new(0.5, 0, 1, 0)
 infText.Position = UDim2.new(0.03, 0, 0, 0)
 infText.BackgroundTransparency = 1
-infText.Text = "🔄 Salto Infinito"
+infText.Text = "SALTO INFINITO"
 infText.TextColor3 = Color3.fromRGB(255, 200, 100)
 infText.TextXAlignment = Enum.TextXAlignment.Left
 infText.TextScaled = true
@@ -268,12 +225,8 @@ infBtn.Position = UDim2.new(0.75, 0, 0.2, 0)
 infBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
 infBtn.Text = "OFF"
 infBtn.TextScaled = true
-infBtn.Font = Enum.Font.GothamBold
 infBtn.Parent = infFrame
 
-local infStatus = false
-
--- Fly
 local flyFrame = Instance.new("Frame")
 flyFrame.Size = UDim2.new(0.96, 0, 0.2, 0)
 flyFrame.Position = UDim2.new(0.02, 0, 0.25, 0)
@@ -281,15 +234,11 @@ flyFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
 flyFrame.BorderSizePixel = 0
 flyFrame.Parent = moveTab
 
-local flyCorner = Instance.new("UICorner")
-flyCorner.CornerRadius = UDim.new(0, 10)
-flyCorner.Parent = flyFrame
-
 local flyText = Instance.new("TextLabel")
 flyText.Size = UDim2.new(0.5, 0, 1, 0)
 flyText.Position = UDim2.new(0.03, 0, 0, 0)
 flyText.BackgroundTransparency = 1
-flyText.Text = "🕊️ Modo Vuelo"
+flyText.Text = "MODO VUELO"
 flyText.TextColor3 = Color3.fromRGB(100, 200, 255)
 flyText.TextXAlignment = Enum.TextXAlignment.Left
 flyText.TextScaled = true
@@ -302,12 +251,8 @@ flyBtn.Position = UDim2.new(0.75, 0, 0.2, 0)
 flyBtn.BackgroundColor3 = Color3.fromRGB(60, 100, 140)
 flyBtn.Text = "OFF"
 flyBtn.TextScaled = true
-flyBtn.Font = Enum.Font.GothamBold
 flyBtn.Parent = flyFrame
 
-local flyActive = false
-
--- NoClip
 local noclipFrame = Instance.new("Frame")
 noclipFrame.Size = UDim2.new(0.96, 0, 0.2, 0)
 noclipFrame.Position = UDim2.new(0.02, 0, 0.48, 0)
@@ -315,15 +260,11 @@ noclipFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
 noclipFrame.BorderSizePixel = 0
 noclipFrame.Parent = moveTab
 
-local noclipCorner = Instance.new("UICorner")
-noclipCorner.CornerRadius = UDim.new(0, 10)
-noclipCorner.Parent = noclipFrame
-
 local noclipText = Instance.new("TextLabel")
 noclipText.Size = UDim2.new(0.5, 0, 1, 0)
 noclipText.Position = UDim2.new(0.03, 0, 0, 0)
 noclipText.BackgroundTransparency = 1
-noclipText.Text = "👻 NoClip"
+noclipText.Text = "NOCLIP"
 noclipText.TextColor3 = Color3.fromRGB(150, 255, 150)
 noclipText.TextXAlignment = Enum.TextXAlignment.Left
 noclipText.TextScaled = true
@@ -336,140 +277,104 @@ noclipBtn.Position = UDim2.new(0.75, 0, 0.2, 0)
 noclipBtn.BackgroundColor3 = Color3.fromRGB(80, 120, 100)
 noclipBtn.Text = "OFF"
 noclipBtn.TextScaled = true
-noclipBtn.Font = Enum.Font.GothamBold
 noclipBtn.Parent = noclipFrame
 
-local noclipActive = false
-
--- PESTAÑA 3 (UTILS)
-local utilsTab = Instance.new("Frame")
-utilsTab.Size = UDim2.new(1, 0, 1, 0)
-utilsTab.BackgroundTransparency = 1
-utilsTab.Visible = false
-utilsTab.Parent = contentFrame
-
--- Botón Reset
 local resetBtn = Instance.new("TextButton")
 resetBtn.Size = UDim2.new(0.46, 0, 0.15, 0)
 resetBtn.Position = UDim2.new(0.27, 0, 0.1, 0)
 resetBtn.BackgroundColor3 = Color3.fromRGB(140, 80, 60)
-resetBtn.Text = "⟳ RESET TODO"
+resetBtn.Text = "RESET"
 resetBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 resetBtn.TextScaled = true
 resetBtn.Font = Enum.Font.GothamBold
 resetBtn.Parent = utilsTab
 
-local resetCorner = Instance.new("UICorner")
-resetCorner.CornerRadius = UDim.new(0, 10)
-resetCorner.Parent = resetBtn
-
--- Mensaje
-local msgText = Instance.new("TextLabel")
-msgText.Size = UDim2.new(0.8, 0, 0.1, 0)
-msgText.Position = UDim2.new(0.1, 0, 0.35, 0)
-msgText.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
-msgText.Text = "✓ Listo"
-msgText.TextColor3 = Color3.fromRGB(100, 255, 100)
-msgText.TextScaled = true
-msgText.Font = Enum.Font.Gotham
-msgText.Visible = false
-msgText.Parent = utilsTab
-
-local msgCorner = Instance.new("UICorner")
-msgCorner.CornerRadius = UDim.new(0, 8)
-msgCorner.Parent = msgText
-
--- PESTAÑA 4 (CREDITS)
-local creditsTab = Instance.new("Frame")
-creditsTab.Size = UDim2.new(1, 0, 1, 0)
-creditsTab.BackgroundTransparency = 1
-creditsTab.Visible = false
-creditsTab.Parent = contentFrame
-
 local creditsText = Instance.new("TextLabel")
 creditsText.Size = UDim2.new(0.9, 0, 0.5, 0)
 creditsText.Position = UDim2.new(0.05, 0, 0.25, 0)
 creditsText.BackgroundTransparency = 1
-creditsText.Text = "⚡ MENU UNIVERSAL ⚡\n\nCreado por: Abraham\n\nVersión: 2.0\n\nFunciona en cualquier juego"
+creditsText.Text = "MENU UNIVERSAL\n\nCreado por: Abraham\n\nVersión: 1.0"
 creditsText.TextColor3 = Color3.fromRGB(200, 200, 200)
 creditsText.TextScaled = true
 creditsText.Font = Enum.Font.Gotham
 creditsText.Parent = creditsTab
 
--- ========== FUNCIONES ==========
-local function getChar()
+local speed = 16
+local jump = 50
+local infActive = false
+local flyActive = false
+local noclipActive = false
+local hum = nil
+local infCon = nil
+local noclipCon = nil
+local flyParts = {}
+
+local function getHum()
     local char = player.Character
-    if char and char:FindFirstChild("Humanoid") then
-        hum = char.Humanoid
-        return char, hum
+    if char then
+        hum = char:FindFirstChild("Humanoid")
+        if hum then
+            hum.WalkSpeed = speed
+            hum.JumpPower = jump
+        end
     end
-    return nil, nil
+    return hum
 end
 
-local currentSpeed = 16
-local currentJump = 50
+player.CharacterAdded:Connect(function(char)
+    hum = char:WaitForChild("Humanoid")
+    hum.WalkSpeed = speed
+    hum.JumpPower = jump
+end)
 
--- Velocidad
 speedMinus.MouseButton1Click:Connect(function()
-    currentSpeed = math.max(16, currentSpeed - 5)
-    speedValue.Text = tostring(currentSpeed)
-    local char, hum = getChar()
-    if hum then hum.WalkSpeed = currentSpeed end
+    speed = math.max(16, speed - 5)
+    speedVal.Text = tostring(speed)
+    if hum then hum.WalkSpeed = speed end
 end)
 
 speedPlus.MouseButton1Click:Connect(function()
-    currentSpeed = math.min(250, currentSpeed + 5)
-    speedValue.Text = tostring(currentSpeed)
-    local char, hum = getChar()
-    if hum then hum.WalkSpeed = currentSpeed end
+    speed = math.min(250, speed + 5)
+    speedVal.Text = tostring(speed)
+    if hum then hum.WalkSpeed = speed end
 end)
 
--- Salto
 jumpMinus.MouseButton1Click:Connect(function()
-    currentJump = math.max(50, currentJump - 10)
-    jumpValue.Text = tostring(currentJump)
-    local char, hum = getChar()
-    if hum then hum.JumpPower = currentJump end
+    jump = math.max(50, jump - 10)
+    jumpVal.Text = tostring(jump)
+    if hum then hum.JumpPower = jump end
 end)
 
 jumpPlus.MouseButton1Click:Connect(function()
-    currentJump = math.min(500, currentJump + 10)
-    jumpValue.Text = tostring(currentJump)
-    local char, hum = getChar()
-    if hum then hum.JumpPower = currentJump end
+    jump = math.min(500, jump + 10)
+    jumpVal.Text = tostring(jump)
+    if hum then hum.JumpPower = jump end
 end)
 
--- Infinite Jump
-local infConnection = nil
 infBtn.MouseButton1Click:Connect(function()
-    infStatus = not infStatus
-    if infStatus then
+    infActive = not infActive
+    if infActive then
         infBtn.Text = "ON"
         infBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
-        infConnection = game:GetService("UserInputService").JumpRequest:Connect(function()
-            if infStatus then
-                local char, hum = getChar()
-                if hum then
-                    hum:ChangeState(Enum.HumanoidStateType.Jumping)
-                end
+        infCon = game:GetService("UserInputService").JumpRequest:Connect(function()
+            if infActive then
+                local h = getHum()
+                if h then h:ChangeState(Enum.HumanoidStateType.Jumping) end
             end
         end)
     else
         infBtn.Text = "OFF"
         infBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
-        if infConnection then infConnection:Disconnect() infConnection = nil end
+        if infCon then infCon:Disconnect() infCon = nil end
     end
 end)
 
--- Fly
-local flyParts = {}
 flyBtn.MouseButton1Click:Connect(function()
     flyActive = not flyActive
     if flyActive then
         flyBtn.Text = "ON"
         flyBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
-        
-        local char, hum = getChar()
+        local char = player.Character
         if char then
             local torso = char:FindFirstChild("HumanoidRootPart") or char:FindFirstChild("Torso")
             if torso then
@@ -481,53 +386,46 @@ flyBtn.MouseButton1Click:Connect(function()
                 bv.MaxForce = Vector3.new(9e9, 9e9, 9e9)
                 bv.Velocity = Vector3.new(0, 0, 0)
                 bv.Parent = torso
-                
-                local controls = {W=false, S=false, A=false, D=false, Space=false, Shift=false}
+                local controls = {W=false, S=false, A=false, D=false, Sp=false, Sh=false}
                 local uis = game:GetService("UserInputService")
-                
-                local function update()
+                local function upd()
                     local vel = Vector3.new(0, 0, 0)
                     if controls.W then vel = vel + torso.CFrame.LookVector end
                     if controls.S then vel = vel - torso.CFrame.LookVector end
                     if controls.D then vel = vel + torso.CFrame.RightVector end
                     if controls.A then vel = vel - torso.CFrame.RightVector end
-                    if controls.Space then vel = vel + Vector3.new(0, 1, 0) end
-                    if controls.Shift then vel = vel - Vector3.new(0, 1, 0) end
+                    if controls.Sp then vel = vel + Vector3.new(0, 1, 0) end
+                    if controls.Sh then vel = vel - Vector3.new(0, 1, 0) end
                     if vel.Magnitude > 0 then vel = vel.Unit * 75 end
                     bv.Velocity = vel
-                    if vel.Magnitude > 0 then
-                        bg.CFrame = CFrame.new(torso.Position, torso.Position + vel)
-                    end
+                    if vel.Magnitude > 0 then bg.CFrame = CFrame.new(torso.Position, torso.Position + vel) end
                 end
-                
-                local con1 = uis.InputBegan:Connect(function(input)
-                    local k = input.KeyCode
-                    if k == Enum.KeyCode.W then controls.W = true update() end
-                    if k == Enum.KeyCode.S then controls.S = true update() end
-                    if k == Enum.KeyCode.D then controls.D = true update() end
-                    if k == Enum.KeyCode.A then controls.A = true update() end
-                    if k == Enum.KeyCode.Space then controls.Space = true update() end
-                    if k == Enum.KeyCode.LeftShift then controls.Shift = true update() end
+                local c1 = uis.InputBegan:Connect(function(i)
+                    local k = i.KeyCode
+                    if k == Enum.KeyCode.W then controls.W = true upd() end
+                    if k == Enum.KeyCode.S then controls.S = true upd() end
+                    if k == Enum.KeyCode.D then controls.D = true upd() end
+                    if k == Enum.KeyCode.A then controls.A = true upd() end
+                    if k == Enum.KeyCode.Space then controls.Sp = true upd() end
+                    if k == Enum.KeyCode.LeftShift then controls.Sh = true upd() end
                 end)
-                
-                local con2 = uis.InputEnded:Connect(function(input)
-                    local k = input.KeyCode
-                    if k == Enum.KeyCode.W then controls.W = false update() end
-                    if k == Enum.KeyCode.S then controls.S = false update() end
-                    if k == Enum.KeyCode.D then controls.D = false update() end
-                    if k == Enum.KeyCode.A then controls.A = false update() end
-                    if k == Enum.KeyCode.Space then controls.Space = false update() end
-                    if k == Enum.KeyCode.LeftShift then controls.Shift = false update() end
+                local c2 = uis.InputEnded:Connect(function(i)
+                    local k = i.KeyCode
+                    if k == Enum.KeyCode.W then controls.W = false upd() end
+                    if k == Enum.KeyCode.S then controls.S = false upd() end
+                    if k == Enum.KeyCode.D then controls.D = false upd() end
+                    if k == Enum.KeyCode.A then controls.A = false upd() end
+                    if k == Enum.KeyCode.Space then controls.Sp = false upd() end
+                    if k == Enum.KeyCode.LeftShift then controls.Sh = false upd() end
                 end)
-                
-                local con3 = game:GetService("RunService").Heartbeat:Connect(update)
-                flyParts = {bg, bv, con1, con2, con3}
+                local c3 = game:GetService("RunService").Heartbeat:Connect(upd)
+                flyParts = {bg, bv, c1, c2, c3}
             end
         end
     else
         flyBtn.Text = "OFF"
         flyBtn.BackgroundColor3 = Color3.fromRGB(60, 100, 140)
-        for _, v in ipairs(flyParts) do
+        for _, v in pairs(flyParts) do
             if v and v.Disconnect then v:Disconnect()
             elseif v and v.Destroy then v:Destroy() end
         end
@@ -535,21 +433,17 @@ flyBtn.MouseButton1Click:Connect(function()
     end
 end)
 
--- NoClip
-local noclipConnection = nil
 noclipBtn.MouseButton1Click:Connect(function()
     noclipActive = not noclipActive
     if noclipActive then
         noclipBtn.Text = "ON"
         noclipBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
-        noclipConnection = game:GetService("RunService").Stepped:Connect(function()
+        noclipCon = game:GetService("RunService").Stepped:Connect(function()
             if noclipActive then
-                local char, _ = getChar()
+                local char = player.Character
                 if char then
-                    for _, part in pairs(char:GetDescendants()) do
-                        if part:IsA("BasePart") then
-                            part.CanCollide = false
-                        end
+                    for _, p in pairs(char:GetDescendants()) do
+                        if p:IsA("BasePart") then p.CanCollide = false end
                     end
                 end
             end
@@ -557,40 +451,91 @@ noclipBtn.MouseButton1Click:Connect(function()
     else
         noclipBtn.Text = "OFF"
         noclipBtn.BackgroundColor3 = Color3.fromRGB(80, 120, 100)
-        if noclipConnection then noclipConnection:Disconnect() noclipConnection = nil end
-        local char, _ = getChar()
+        if noclipCon then noclipCon:Disconnect() noclipCon = nil end
+        local char = player.Character
         if char then
-            for _, part in pairs(char:GetDescendants()) do
-                if part:IsA("BasePart") then
-                    part.CanCollide = true
-                end
+            for _, p in pairs(char:GetDescendants()) do
+                if p:IsA("BasePart") then p.CanCollide = true end
             end
         end
     end
 end)
 
--- Reset
-local function showMsg(text, color)
-    msgText.Text = text
-    msgText.TextColor3 = color
-    msgText.Visible = true
-    wait(1.5)
-    msgText.Visible = false
-end
-
 resetBtn.MouseButton1Click:Connect(function()
-    currentSpeed = 16
-    currentJump = 50
-    speedValue.Text = "16"
-    jumpValue.Text = "50"
-    
-    local char, hum = getChar()
+    speed = 16
+    jump = 50
+    speedVal.Text = "16"
+    jumpVal.Text = "50"
     if hum then
         hum.WalkSpeed = 16
         hum.JumpPower = 50
     end
-    
-    if infStatus then
-        infStatus = false
+    if infActive then
+        infActive = false
         infBtn.Text = "OFF"
-        infBtn.BackgroundColor3 = Color3.fromRGB(8
+        infBtn.BackgroundColor3 = Color3.fromRGB(80, 60, 140)
+        if infCon then infCon:Disconnect() infCon = nil end
+    end
+    if flyActive then
+        flyActive = false
+        flyBtn.Text = "OFF"
+        flyBtn.BackgroundColor3 = Color3.fromRGB(60, 100, 140)
+        for _, v in pairs(flyParts) do
+            if v and v.Disconnect then v:Disconnect()
+            elseif v and v.Destroy then v:Destroy() end
+        end
+        flyParts = {}
+    end
+    if noclipActive then
+        noclipActive = false
+        noclipBtn.Text = "OFF"
+        noclipBtn.BackgroundColor3 = Color3.fromRGB(80, 120, 100)
+        if noclipCon then noclipCon:Disconnect() noclipCon = nil end
+        local char = player.Character
+        if char then
+            for _, p in pairs(char:GetDescendants()) do
+                if p:IsA("BasePart") then p.CanCollide = true end
+            end
+        end
+    end
+end)
+
+local function switch(active, btn, others)
+    mainTab.Visible = false
+    moveTab.Visible = false
+    utilsTab.Visible = false
+    creditsTab.Visible = false
+    active.Visible = true
+    btn.BackgroundColor3 = Color3.fromRGB(80, 60, 150)
+    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    for _, b in pairs(others) do
+        b.BackgroundColor3 = Color3.fromRGB(40, 40, 70)
+        b.TextColor3 = Color3.fromRGB(200, 200, 200)
+    end
+end
+
+tab1.MouseButton1Click:Connect(function() switch(mainTab, tab1, {tab2, tab3, tab4}) end)
+tab2.MouseButton1Click:Connect(function() switch(moveTab, tab2, {tab1, tab3, tab4}) end)
+tab3.MouseButton1Click:Connect(function() switch(utilsTab, tab3, {tab1, tab2, tab4}) end)
+tab4.MouseButton1Click:Connect(function() switch(creditsTab, tab4, {tab1, tab2, tab3}) end)
+
+local drag = false
+local dragStart, frameStart
+main.InputBegan:Connect(function(i)
+    if i.UserInputType == Enum.UserInputType.Touch then
+        drag = true
+        dragStart = i.Position
+        frameStart = main.Position
+    end
+end)
+game:GetService("UserInputService").InputChanged:Connect(function(i)
+    if drag and i.UserInputType == Enum.UserInputType.Touch then
+        local delta = i.Position - dragStart
+        main.Position = UDim2.new(frameStart.X.Scale, frameStart.X.Offset + delta.X, frameStart.Y.Scale, frameStart.Y.Offset + delta.Y)
+    end
+end)
+game:GetService("UserInputService").InputEnded:Connect(function(i)
+    if i.UserInputType == Enum.UserInputType.Touch then drag = false end
+end)
+
+print("Menu cargado correctamente")
